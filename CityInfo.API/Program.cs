@@ -14,8 +14,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.Run(async (context) => { await context.Response.WriteAsync("Hello World!"); });
-
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
