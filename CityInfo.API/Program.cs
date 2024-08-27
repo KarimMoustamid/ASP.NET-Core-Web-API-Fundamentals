@@ -7,14 +7,14 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// app.Run(async (context) => { await context.Response.WriteAsync("Hello World!"); });
-
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.Run(async (context) => { await context.Response.WriteAsync("Hello World!"); });
 
 app.UseHttpsRedirection();
 app.UseAuthorization();
