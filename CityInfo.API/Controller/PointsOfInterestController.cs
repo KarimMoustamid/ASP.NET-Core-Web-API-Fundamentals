@@ -20,7 +20,7 @@ namespace CityInfo.API.Controller
             return this.Ok(city.PointsOfIntrest);
         }
 
-        [HttpGet("{pointofintrestid}")]
+        [HttpGet("{pointofintrestid}", Name = "GetPointOfInterest")]
         public ActionResult<PointOfInterestDto> GetPointOfInterestById(int cityId, int pointofintrestid)
         {
             var city = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
@@ -60,7 +60,12 @@ namespace CityInfo.API.Controller
                 Description = pointOfInterestForCreation.Description
             };
 
-            return this.Ok(finalPointOfInterest);
+
+            return this.CreatedAtRoute("GetPointOfInterest", new {
+                cityId = cityId,
+                pointofintrestid = finalPointOfInterest.Id
+            },
+            finalPointOfInterest);
 
 
         }
