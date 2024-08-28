@@ -3,8 +3,10 @@ namespace CityInfo.API.Controller
     using Microsoft.AspNetCore.Mvc;
 
     [ApiController]
+    [Route("api/[Controller]")]
     public class CitiesController : ControllerBase
     {
+        [HttpGet]
         public JsonResult GetCities()
         {
             var cities = new List<object>
@@ -16,5 +18,6 @@ namespace CityInfo.API.Controller
 
             return new JsonResult(cities);
         }
+
     }
 }
