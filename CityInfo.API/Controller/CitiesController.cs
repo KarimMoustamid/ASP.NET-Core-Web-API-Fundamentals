@@ -3,7 +3,7 @@ namespace CityInfo.API.Controller
     using Microsoft.AspNetCore.Mvc;
 
     [ApiController]
-    [Route("api/[Controller]")]
+    [Route("api/Cities")]
     public class CitiesController : ControllerBase
     {
         [HttpGet]
