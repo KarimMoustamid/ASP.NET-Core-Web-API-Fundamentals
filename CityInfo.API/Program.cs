@@ -5,6 +5,15 @@ builder.Services.AddControllers(); // Add this line to include controller suppor
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddProblemDetails(option =>
+{
+    option.CustomizeProblemDetails = ctx =>
+    {
+        // Adding a custom property "additionalInfo" to the ProblemDetails response
+        ctx.ProblemDetails.Extensions.Add("Server", Environment.MachineName);
+    };
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
