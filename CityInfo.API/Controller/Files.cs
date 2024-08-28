@@ -24,7 +24,8 @@ namespace CityInfo.API.Controller
                 return this.NotFound();
             }
 
-            if (!_fileExtensionContentTypeProvider.TryGetContentType(filePath, out var contentType ))
+            // Attempt to retrieve the MIME type of the file. If not found, default to "application/octet-stream".
+            if (!_fileExtensionContentTypeProvider.TryGetContentType(filePath, out var contentType))
             {
                 contentType = "application/octet-stream";
             }
