@@ -4,7 +4,9 @@ namespace CityInfo.API
 
     public class CitiesDataStore
     {
-        public List<CityDto> Cites { get; set; } = new List<CityDto>
+        public static CitiesDataStore Current { get; } = new CitiesDataStore(); // singleton pattern
+
+        public List<CityDto> Cities { get; set; } = new List<CityDto>
         {
             new CityDto {Id = 1, Name = "New York", Description = "The one with that big park."},
             new CityDto {Id = 2, Name = "Antwerp", Description = "The one with the cathedral that was never really finished."},
