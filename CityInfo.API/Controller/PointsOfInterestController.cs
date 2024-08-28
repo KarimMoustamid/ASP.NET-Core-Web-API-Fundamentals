@@ -40,5 +40,29 @@ namespace CityInfo.API.Controller
 
             return this.Ok(pointofintrest);
         }
+
+        public ActionResult<PointOfInterestDto> createPointOfInterest(int cityId, [FromBody] PointOfInterestForCreationDto pointOfInterestForCreation)
+        {
+            var city = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
+
+            if (city == null)
+            {
+                return this.NotFound();
+            }
+
+            // demo purposes - to be improved :
+            var maxPointOfInterestId = CitiesDataStore.Current.Cities.SelectMany( c=> c.PointsOfIntrest).Max( p => p.Id);
+
+            var finalPointOfInterest = new PointOfInterestDto
+            {
+                Id = maxPointOfInterestId++,
+                Name = pointOfInterestForCreation.Name,
+                Description = pointOfInterestForCreation.Description
+            };
+
+            return this.Ok(finalPointOfInterest);
+
+
+        }
     }
 }
